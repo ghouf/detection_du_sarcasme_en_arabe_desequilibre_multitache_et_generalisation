@@ -1,4 +1,8 @@
-"""Training helpers. Part A fits only the TF-IDF baseline."""
+"""Training helpers.
+
+Part A fits the TF-IDF baseline. Part C (shared budget, early stopping, imbalance)
+lives in ``train.deep`` so importing ``set_seed`` does not load the networks.
+"""
 
 from __future__ import annotations
 

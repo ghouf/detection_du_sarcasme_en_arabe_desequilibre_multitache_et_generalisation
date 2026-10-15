@@ -1,6 +1,6 @@
 """Validation metrics, the decision threshold, the results journal, and prediction files.
 
-Test metrics stay empty in Part A. ``export_predictions`` is ready for Part F
+Test metrics stay empty until Part F. ``export_predictions`` is ready for Part F
 and is not called on the official test here.
 """
 
@@ -278,6 +278,85 @@ def build_part_a_rows(
             )
         )
     return rows
+
+
+NLI_NOTE = (
+    "aucun entraînement ; seuil de P(sarcastique) choisi sur val ; "
+    "train_time_s est le temps d'inférence ; test non utilisé"
+)
+SENTIMENT_NOTE = (
+    "règle sentiment négatif => sarcastique ; décision par argmax ; "
+    "fine-tuné sur ASTD, ArSAS et SemEval ; ArSarcasm v1 ré-annote ASTD et SemEval 2017, "
+    "donc certains tweets ont pu être vus ; train_time_s est le temps d'inférence ; test non utilisé"
+)
+
+
+def build_part_b_rows(
+    y_val,
+    nli_runs: list[tuple[str, np.ndarray, np.ndarray, float, float]],
+    sentiment_pred,
+    sentiment_proba,
+    sentiment_time_s: float,
+    seed: int = 42,
+) -> list[dict[str, object]]:
+    """Validation rows for Part B. Test columns are left empty on purpose.
+
+    Each NLI item is ``(model, pred, proba, threshold, inference_seconds)``.
+    The sentiment row has no threshold: the decision is the model's argmax.
+    """
+    rows = [
+        metric_row(
+            name,
+            "raw",
+            seed,
+            y_val,
+            pred,
+            proba,
+            threshold,
+            elapsed,
+            0,
+            NLI_NOTE,
+        )
+        for name, pred, proba, threshold, elapsed in nli_runs
+    ]
+    rows.append(
+        metric_row(
+            "sentiment_neg_implies_sarcasm",
+            "raw",
+            seed,
+            y_val,
+            sentiment_pred,
+            sentiment_proba,
+            None,
+            sentiment_time_s,
+            0,
+            SENTIMENT_NOTE,
+        )
+    )
+    return rows
+
+
+def build_part_c_rows(y_val, runs: list[dict[str, object]], seed: int = 42) -> list[dict[str, object]]:
+    """Validation rows for Part C. Test columns stay empty on purpose.
+
+    Each run provides model, preprocess, pred, proba, threshold, train_time_s,
+    n_trainable_params, and notes. The official test file is not scored.
+    """
+    return [
+        metric_row(
+            str(run["model"]),
+            str(run["preprocess"]),
+            seed,
+            y_val,
+            run["pred"],
+            run["proba"],
+            None if run["threshold"] is None else float(run["threshold"]),
+            float(run["train_time_s"]),
+            int(run["n_trainable_params"]),
+            str(run["notes"]),
+        )
+        for run in runs
+    ]
 
 
 _SLICE_COLORS = {
