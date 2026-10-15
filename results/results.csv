@@ -1,0 +1,6 @@
+model,preprocess,seed,val_f1_sarcasm,val_pr_auc,val_macro_f1,val_accuracy,test_f1_sarcasm,test_pr_auc,test_macro_f1,threshold,train_time_s,n_trainable_params,notes
+trivial_never_sarcastic,none,42,0.0,0.172908,0.452682,0.827092,,,,,0.0,0,toujours non sarcastique ; l'accuracy n'est pas la métrique de sélection
+tfidf_word12_char25_logreg,clean_special_emoji_tashkeel,42,0.511628,0.530462,0.705333,,,,,0.54,2.035,601149,seuil choisi sur val par F1 sarcastique maximal ; test non utilisé
+rule_url,raw,42,0.361768,0.221488,0.478867,,,,,0.5,0.0,0,direction choisie sur le taux de sarcasme du train
+rule_mention,raw,42,0.265081,0.165426,0.308084,,,,,0.5,0.0,0,direction choisie sur le taux de sarcasme du train
+rule_csv_quote,raw,42,0.300578,0.194973,0.517176,,,,,0.5,0.0,0,direction choisie sur le taux de sarcasme du train

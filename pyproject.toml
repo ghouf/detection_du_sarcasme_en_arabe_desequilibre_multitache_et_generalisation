@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arsarcasm-tp2"
+version = "0.1.0"
+description = "TP2 — Détection du sarcasme en arabe (ArSarcasm-v2)"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "emoji==1.4.2",
+    "pyarabic>=0.6.15",
+    "pytest>=8.0",
+    "jupyter>=1.1",
+    "nbclient>=0.10",
+    "torch>=2.2",
+    "transformers>=4.44",
+    "datasets>=2.20",
+    "evaluate>=0.4.2",
+    "gensim>=4.3",
+    "arabert>=1.0.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
