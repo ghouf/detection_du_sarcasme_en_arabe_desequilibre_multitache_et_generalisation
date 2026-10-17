@@ -1,8 +1,3 @@
-"""Load ArSarcasm-v2 and apply the imposed split.
-
-The official test file is never used to fit a model. Rows whose text also
-appears in that file are removed from the train split only, after the split.
-"""
 
 from __future__ import annotations
 
