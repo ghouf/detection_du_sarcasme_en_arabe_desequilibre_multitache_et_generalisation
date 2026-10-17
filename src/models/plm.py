@@ -154,19 +154,35 @@ def inference_device() -> str:
 
 
 def load_nli_pipeline(device: str | None = None):
+    import torch
     from transformers import pipeline
 
     if device is None:
         device = inference_device()
-    return pipeline("zero-shot-classification", model=NLI_MODEL, device=device)
+    # fp16 halves VRAM and roughly doubles throughput on CUDA (GTX 1660 Ti, etc.)
+    dtype = torch.float16 if device == "cuda" else torch.float32
+    return pipeline(
+        "zero-shot-classification",
+        model=NLI_MODEL,
+        device=device,
+        torch_dtype=dtype,
+    )
 
 
 def load_sentiment_pipeline(device: str | None = None):
+    import torch
     from transformers import pipeline
 
     if device is None:
         device = inference_device()
-    return pipeline("text-classification", model=SENTIMENT_MODEL, device=device)
+    # fp16 halves VRAM and roughly doubles throughput on CUDA (GTX 1660 Ti, etc.)
+    dtype = torch.float16 if device == "cuda" else torch.float32
+    return pipeline(
+        "text-classification",
+        model=SENTIMENT_MODEL,
+        device=device,
+        torch_dtype=dtype,
+    )
 
 
 def _as_texts(tweets) -> list[str]:

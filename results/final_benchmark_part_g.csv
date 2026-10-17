@@ -1,0 +1,6 @@
+Famille,Modèle,Paramètres Entraînés,Taille Disque,Temps Train,Latence CPU/tweet,Val F1 Sarcasme,Test F1 Sarcasme,PR-AUC Test,Robustesse Dialecte,Chute Sans Marqueurs
+A. Baseline TF-IDF,TF-IDF (mots+chars) + LogReg,601 K,~5 Mo,~2 s (CPU),~0.2 ms,0.5116,0.532,0.541,Moyenne (-18%),Modérée (-22%)
+B. Zero-Shot PLM,mDeBERTa-v3 (XNLI fr/en),0 (Zero-shot),1.1 Go,0 s,~120 ms,0.413,0.4215,0.3493,Faible (-31%),Forte (-45%)
+C. Embeddings Statiques,AraVec Twitter + BiLSTM-Att,~1.2 M,15 Mo,~3 min (GPU),~4 ms,0.548,0.551,0.563,Bonne (-14%),Modérée (-20%)
+D. PLM Gelé,AraBERT-Twitter gelé + BiLSTM,~650 K,540 Mo,~5 min (GPU),~45 ms,0.572,0.584,0.591,Bonne (-12%),Faible (-15%)
+E. Fine-Tuning PLM,MARBERTv2 Fine-tuné (Multi-tâche),160 M,650 Mo,~15 min (GPU),~52 ms,0.618,0.621,0.635,Excellente (-8%),Faible (-11%)

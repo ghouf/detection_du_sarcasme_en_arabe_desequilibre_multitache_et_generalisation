@@ -4,3 +4,7 @@ tfidf_word12_char25_logreg,clean_special_emoji_tashkeel,42,0.511628,0.530462,0.7
 rule_url,raw,42,0.361768,0.221488,0.478867,,,,,0.5,0.0,0,direction choisie sur le taux de sarcasme du train
 rule_mention,raw,42,0.265081,0.165426,0.308084,,,,,0.5,0.0,0,direction choisie sur le taux de sarcasme du train
 rule_csv_quote,raw,42,0.300578,0.194973,0.517176,,,,,0.5,0.0,0,direction choisie sur le taux de sarcasme du train
+nli_zeroshot_ar,none,42,0.3896,0.3383,0.5877,0.6829,,,,0.82,0.0,0,Zero-shot NLI (ar) ; seuil optimisé sur val
+nli_zeroshot_fr,none,42,0.413,0.349,0.5848,0.6558,,,,0.75,0.0,0,Zero-shot NLI (fr) ; seuil optimisé sur val
+nli_zeroshot_en,none,42,0.403,0.3398,0.595,0.6861,,,,0.82,0.0,0,Zero-shot NLI (en) ; seuil optimisé sur val
+sentiment_neg_implies_sarcasm,none,42,0.4656,0.472,0.624,0.6908,,,,0.5,0.0,0,Heuristique sentiment négatif => sarcastique ; argmax ; risque de contamination
