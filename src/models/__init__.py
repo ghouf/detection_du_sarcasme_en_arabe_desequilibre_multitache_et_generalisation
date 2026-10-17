@@ -7,6 +7,7 @@ Later parts add the frozen encoder and fine-tuning.
 """
 
 from models.baseline import build_baseline
+from models.multitask import MonoTask, MultiTask
 from models.plm import (
     HYPOTHESES,
     NLI_MODEL,
@@ -24,4 +25,6 @@ __all__ = [
     "collect_part_b",
     "load_nli_pipeline",
     "load_sentiment_pipeline",
+    "MonoTask",
+    "MultiTask",
 ]
